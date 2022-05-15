@@ -75,7 +75,7 @@ class BookShelfFragment : Fragment() {
 
             override fun onFailure(call: Call<BooksResponse>?, t: Throwable?) {
                 Log.d("krahet 7yeti",t?.message.toString())
-                Toast.makeText(requireActivity(), "Network faillure", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "Network failure", Toast.LENGTH_SHORT).show()
             }
 
         })

@@ -87,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/sfbold"
+                    android:text="The  \n Institute"
                     android:textColor="@android:color/white"
                     android:textSize="24sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView"

@@ -1,6 +1,7 @@
 package com.example.bfn.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +13,10 @@ import com.example.bfn.Adapters.BooksAdapter
 import com.example.bfn.Adapters.RecentlyReadBooksAdapter
 import com.example.bfn.BookDetails
 import com.example.bfn.databinding.FragmentHomeBinding
-import com.example.bfn.models.BooksResponse
-import com.example.bfn.models.GetUserResponse
-import com.example.bfn.models.Token
-import com.example.bfn.models.UserX
+import com.example.bfn.models.*
 import com.example.bfn.prefs.PrefsManager
 import com.example.bfn.util.ApiClient
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,6 +48,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getAllBooks()
+        showLastRecentlyReadBookInUser()
         getUser()
     }
 
@@ -117,6 +117,43 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<GetUserResponse>?, t: Throwable?) {
+                    Toast.makeText(requireActivity(), "Network Failure", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+
+        }
+    }
+
+    private fun showLastRecentlyReadBookInUser() {
+        val token = PrefsManager.geToken(requireActivity())
+        token?.let {
+            apiservice.showLastRecentlyReadBook(UserY(token)).enqueue(object : Callback<lastBook?> {
+                override fun onResponse(
+                    call: Call<lastBook?>?,
+                    response: Response<lastBook?>
+
+                ) {
+                    if (response.isSuccessful){
+
+                        val LastReadBook = response.body()?.lastBook
+                            Log.d("AHMED", response.body().toString())
+                        LastReadBook?.let {
+                            // this condition is allowing the LastReadBook to be null miselich ama mannajamich
+                            // naaref est ce que LastReadBook est null ou pas !!!
+                            binding.tvBookTitle.text = it.title
+                            binding.tvAuteur.text = "By " + it.author
+                            Picasso.get().load(it?.coverImage?.replace("localhost","10.0.2.2")).into(binding.imHomePicture)
+
+                        }
+                        if(LastReadBook == null ) {
+                            binding.btnContinueReading.visibility = View.INVISIBLE
+                            binding.btnAudioBook.visibility = View.INVISIBLE
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<lastBook?>?, t: Throwable?) {
                     Toast.makeText(requireActivity(), "Network Failure", Toast.LENGTH_SHORT).show()
                 }
 

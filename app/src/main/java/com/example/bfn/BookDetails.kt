@@ -30,7 +30,7 @@ class BookDetails : AppCompatActivity() {
         setContentView(binding.root)
 
         bookId = intent.getStringExtra(BOOK_ID) ?: return finish()
-        Toast.makeText(this,bookId,Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,bookId,Toast.LENGTH_SHORT).show()
 
         setupUi()
         showBook()
