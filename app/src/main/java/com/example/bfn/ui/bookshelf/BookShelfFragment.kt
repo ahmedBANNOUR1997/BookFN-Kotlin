@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.bfn.Adapters.BookShelfAdapter
 import com.example.bfn.Adapters.BooksAdapter
 import com.example.bfn.Adapters.RecentlyReadBooksAdapter
 import com.example.bfn.BookDetails
@@ -33,7 +34,7 @@ class BookShelfFragment : Fragment() {
     private var _binding: FragmentBookshelfBinding? = null
     private val binding get() = _binding!!
     private val apiservice = ApiClient.apiService
-    private val mAdapter = RecentlyReadBooksAdapter()
+    private val mAdapter = BookShelfAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,

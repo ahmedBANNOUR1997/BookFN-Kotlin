@@ -4,22 +4,24 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bfn.databinding.ItemBookBinding
 import com.example.bfn.databinding.ItemRecentBookBinding
 import com.example.bfn.models.Book
-import com.example.bfn.models.Books
 import com.example.bfn.util.SimpleCallback
 import com.squareup.picasso.Picasso
 
 
-class RecentlyReadBooksAdapter : RecyclerView.Adapter<RecentlyReadBooksAdapter.ViewHolder>() {
+class BookShelfAdapter : RecyclerView.Adapter<BookShelfAdapter.ViewHolder>() {
+
+    private var books = listOf<Book>()
     private var bookListener: ((String) -> Unit)? = null
 
-    private var books = listOf<Books>()
     fun openBook(callback: ((String) -> Unit)) {
         this.bookListener = callback
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return RecentlyReadBooksAdapter.ViewHolder(
+        return BookShelfAdapter.ViewHolder(
             ItemRecentBookBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -34,7 +36,7 @@ class RecentlyReadBooksAdapter : RecyclerView.Adapter<RecentlyReadBooksAdapter.V
             Picasso.get().load(book.coverImage?.replace("localhost","10.0.2.2")).into(imReadBook)
             imReadBook.setOnClickListener {
                 bookListener?.let { callback ->
-                    callback(book._id!!)
+                    callback(book.id!!)
                 }
             }
         }
@@ -47,9 +49,9 @@ class RecentlyReadBooksAdapter : RecyclerView.Adapter<RecentlyReadBooksAdapter.V
     }
 
 
-    fun updateBooks(newBooks: List<Books>) {
+    fun updateBooks(newBooks: List<Book>) {
         val diffResult =
-            DiffUtil.calculateDiff(SimpleCallback(this.books, newBooks) { it._id!! })
+            DiffUtil.calculateDiff(SimpleCallback(this.books, newBooks) { it.id!! })
         this.books = newBooks
         diffResult.dispatchUpdatesTo(this)
     }

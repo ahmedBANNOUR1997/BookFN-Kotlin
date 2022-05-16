@@ -47,6 +47,9 @@ interface ApiService {
     @POST("lastRecentlyRead")
     fun showLastRecentlyReadBook(@Body user_id: UserY): Call<lastBook?>
 
+    @POST("listRecentlyRead")
+    fun showAllRecentlyReadBooks(@Body user_id: UserY): Call<RecentlyReadBooks?>
+
 
     @GET
     fun getPdf(@Url pdfName: String): Call<ResponseBody>

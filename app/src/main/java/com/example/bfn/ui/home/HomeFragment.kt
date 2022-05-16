@@ -49,6 +49,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getAllBooks()
         showLastRecentlyReadBookInUser()
+        showAllRecentlyReadBooks()
         getUser()
     }
 
@@ -79,20 +80,13 @@ class HomeFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     readBooksAdapter.updateBooks(response.body().response)
-                    recentlyReadBooksAdapter.updateBooks(
-                        response.body().response
-                    )
+
                     readBooksAdapter.openBook {
                         // Toast.makeText(requireActivity(),it,Toast.LENGTH_SHORT).show()
                         BookDetails.start(requireActivity(),it)
 
                     }
 
-                    recentlyReadBooksAdapter.openBook {
-                        // Toast.makeText(requireActivity(),it,Toast.LENGTH_SHORT).show()
-                        BookDetails.start(requireActivity(),it)
-
-                    }
                 }
             }
 
@@ -140,7 +134,7 @@ class HomeFragment : Fragment() {
                             Log.d("AHMED", response.body().toString())
                         LastReadBook?.let {
                             // this condition is allowing the LastReadBook to be null miselich ama mannajamich
-                            // naaref est ce que LastReadBook est null ou pas !!!
+                            // nconditioni ala est ce que LastReadBook est null ou pas !!!
                             binding.tvBookTitle.text = it.title
                             binding.tvAuteur.text = "By " + it.author
                             Picasso.get().load(it?.coverImage?.replace("localhost","10.0.2.2")).into(binding.imHomePicture)
@@ -154,6 +148,42 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<lastBook?>?, t: Throwable?) {
+                    Toast.makeText(requireActivity(), "Network Failure", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+
+        }
+    }
+
+    private fun showAllRecentlyReadBooks() {
+        val token = PrefsManager.geToken(requireActivity())
+        token?.let {
+            apiservice.showAllRecentlyReadBooks(UserY(token)).enqueue(object : Callback<RecentlyReadBooks?> {
+                override fun onResponse(
+                    call: Call<RecentlyReadBooks?>?,
+                    response: Response<RecentlyReadBooks?>
+
+                ) {
+                    if (response.isSuccessful){
+
+                        val LISTBOOKS = response.body()?.listBooks
+                        LISTBOOKS?.let {
+
+                            recentlyReadBooksAdapter.updateBooks(it)
+
+                        }
+
+                        recentlyReadBooksAdapter.openBook {
+                            // Toast.makeText(requireActivity(),it,Toast.LENGTH_SHORT).show()
+                            BookDetails.start(requireActivity(),it)
+
+                        }
+
+                    }
+                }
+
+                override fun onFailure(call: Call<RecentlyReadBooks?>?, t: Throwable?) {
                     Toast.makeText(requireActivity(), "Network Failure", Toast.LENGTH_SHORT).show()
                 }
 
