@@ -40,6 +40,15 @@ class BookDetails : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        finish();
+        overridePendingTransition(0, 0);
+        val intent = Intent(this@BookDetails, HomeActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0);
+
+    }
+
 
     private fun setupUi() {
 
