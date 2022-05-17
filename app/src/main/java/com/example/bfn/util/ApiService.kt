@@ -26,6 +26,12 @@ interface ApiService {
     @PATCH("updateuser")
     fun editProfile(@FieldMap params: HashMap<String?, String?>): Call<JsonObject>
 
+
+    @FormUrlEncoded
+    @POST("user/get-by-token")
+    fun getUserByToken(@FieldMap params: HashMap<String?, String?>): Call<JsonObject>
+
+
     @Multipart
     @PUT("edit-profile-picture")
     fun editProfilePicture(

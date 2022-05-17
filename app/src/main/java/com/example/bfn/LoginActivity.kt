@@ -1,5 +1,6 @@
 package com.example.bfn
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,6 +13,7 @@ import com.example.bfn.models.LoginResponse
 import com.example.bfn.models.User
 import com.example.bfn.prefs.PrefsManager
 import com.example.bfn.util.ApiClient
+import com.example.bfn.util.UserSession
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -62,6 +64,33 @@ class LoginActivity : AppCompatActivity() {
                             if (response.code() == 200) {
                                 val token = response.body().message._id
                                 PrefsManager.seToken(this@LoginActivity, token = token)
+
+                                val sharedPref = getSharedPreferences(
+                                    getString(R.string.user), Context.MODE_PRIVATE)
+
+                                with (sharedPref.edit()) {
+                                    putString(getString(R.string.token), content.message.token)
+                                    commit()
+                                }
+
+                                UserSession.id =
+                                    content.message._id
+
+
+                                UserSession.firstName =
+                                    content.message.firstName
+
+                                UserSession.lastName =
+                                    content.message.lastName
+
+                                UserSession.email =
+                                    content.message.email
+
+                                val profilePicture =  content.message.img
+
+                                if(!profilePicture.isEmpty())
+                                    UserSession.img = profilePicture
+
                                 val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                                 startActivity(intent)
                                 finish()

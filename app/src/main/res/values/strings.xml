@@ -7,7 +7,7 @@
     <string name="firstname">First Name</string>
     <string name="lastname">Last Name</string>
     <string name="password">Password</string>
-    <string name="token">token</string>
+    <string name="token">realtoken</string>
     <string name="selectionner_image">Choose a Picture</string>
     <string name="camera">Camera</string>
     <string name="galerie">Galerie</string>

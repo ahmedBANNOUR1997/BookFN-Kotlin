@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.EditText
 import com.example.bfn.util.ApiClient
@@ -14,35 +16,28 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+
+    val DELAY:Long = 3000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-        //Biding BTN et TXT
-        val main_login_btn = findViewById<Button>(R.id.login_btn)
-        //Redirections
-        main_login_btn.setOnClickListener{
-
-            val intent = Intent(this@MainActivity, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
+        Handler(Looper.getMainLooper()).postDelayed({
 
         var sharedPref = getSharedPreferences(
             getString(R.string.user), Context.MODE_PRIVATE)
 
-        val token = sharedPref.getString(getString(R.string.token),null)
+        val realtoken = sharedPref.getString(getString(R.string.token),null)
 
-        println(token)
+        println(realtoken)
 
-        if(token != null)
+        if(realtoken != null)
         {
             val params = HashMap<String?, String?>()
-            params["token"] = token
+            params["token"] = realtoken
 
-            /*ApiClient.apiService.getUserByToken(params).enqueue(
+            ApiClient.apiService.getUserByToken(params).enqueue(
                 object : Callback<JsonObject> {
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
 
@@ -111,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
                     }
                 }
-            )*/
+            )
         }
         else{
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
@@ -121,6 +116,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+    }, DELAY);
     }
 }
