@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.bfn.databinding.ActivityBookDetailsBinding
 import com.example.bfn.models.*
 import com.example.bfn.prefs.PrefsManager
+import com.example.bfn.ui.home.HomeFragment
 import com.example.bfn.util.ApiClient
 import com.example.bfn.util.ApiClient.apiService
 import com.example.bfn.util.BlurAppBar
@@ -46,7 +47,11 @@ class BookDetails : AppCompatActivity() {
         blurAppBar.blurAppBar(binding.appBar, binding.imEvent)
 
         binding.imBack.setOnClickListener {
-            finish()
+            finish();
+            overridePendingTransition(0, 0);
+            val intent = Intent(this@BookDetails, HomeActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(0, 0);
         }
 
     }
