@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         binding.rvRecent.apply {
             adapter = recentlyReadBooksAdapter
             layoutManager =
-                LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, true)
+                LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         }
         binding.rvBooks.apply {
             adapter = readBooksAdapter

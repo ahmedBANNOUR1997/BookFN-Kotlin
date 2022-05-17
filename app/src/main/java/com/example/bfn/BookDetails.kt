@@ -7,11 +7,12 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bfn.databinding.ActivityBookDetailsBinding
-import com.example.bfn.models.Book
-import com.example.bfn.models.BookId
-import com.example.bfn.models.BookResponse
+import com.example.bfn.models.*
+import com.example.bfn.prefs.PrefsManager
 import com.example.bfn.util.ApiClient
+import com.example.bfn.util.ApiClient.apiService
 import com.example.bfn.util.BlurAppBar
+import com.google.gson.JsonObject
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,21 +40,19 @@ class BookDetails : AppCompatActivity() {
     }
 
 
-
-
-
-    private  fun setupUi(){
+    private fun setupUi() {
 
         val blurAppBar = BlurAppBar(this)
-        blurAppBar.blurAppBar(binding.appBar,binding.imEvent)
+        blurAppBar.blurAppBar(binding.appBar, binding.imEvent)
 
         binding.imBack.setOnClickListener {
             finish()
         }
+
     }
 
 
-    private fun showBook(){
+    private fun showBook() {
 
         bookId?.let {
             apiservice.showBook(BookId(it)).enqueue(object : Callback<BookResponse> {
@@ -62,11 +61,15 @@ class BookDetails : AppCompatActivity() {
                     response: Response<BookResponse>
                 ) {
 
-                    if (response.isSuccessful){
+                    if (response.isSuccessful) {
                         val book = response.body().response
+                        val bookid = response.body().response._id
+                        PrefsManager.seBookid(this@BookDetails, bookid = bookid)
 
-                    Picasso.get().load(book.coverImage.replace("localhost","10.0.2.2")).into(binding.imBook)
-                        Picasso.get().load(book.coverImage.replace("localhost","10.0.2.2")).into(binding.imBlurBook)
+                        Picasso.get().load(book.coverImage.replace("localhost", "10.0.2.2"))
+                            .into(binding.imBook)
+                        Picasso.get().load(book.coverImage.replace("localhost", "10.0.2.2"))
+                            .into(binding.imBlurBook)
                         binding.pages.text = book.nbPages.toString()
                         binding.duration.text = "10:45 min "
                         binding.lang.text = "Fr | Eng"
@@ -74,23 +77,67 @@ class BookDetails : AppCompatActivity() {
                         binding.tvTitile.text = book.title
                         binding.tvAuthor.text = book.author.toString()
                         binding.btnRead.setOnClickListener {
-                            BookPdfActivity.start(this@BookDetails,book.filePDF)
+                            addBookToRecentlyRead()
+                            BookPdfActivity.start(this@BookDetails, book.filePDF)
                         }
-
-
-
 
 
                     }
                 }
 
                 override fun onFailure(call: Call<BookResponse>?, t: Throwable?) {
-                    Toast.makeText(this@BookDetails,"Network failure", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BookDetails, "Network failure", Toast.LENGTH_SHORT).show()
 
 
                 }
 
             })
+        }
+    }
+
+
+    private fun addBookToRecentlyRead() {
+        val userid = PrefsManager.geToken(this@BookDetails).toString()
+        Log.d("HATE THIS SHIT", userid)
+        bookId?.let { AddBookRecentlyRead(bookid = it, userid = userid) }?.let {
+            apiService.addBookToRecentlyRead(
+                it
+            ).enqueue(
+                object : Callback<RecentlyBookAdded> {
+                    override fun onFailure(call: Call<RecentlyBookAdded>, t: Throwable) {
+
+                        t.printStackTrace()
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<RecentlyBookAdded>,
+                        response: Response<RecentlyBookAdded>
+                    ) {
+                        if (response.isSuccessful && response.body() != null) {
+                            if (response.code() == 201) {
+                                Toast.makeText(
+                                    this@BookDetails,
+                                    "Book Added To Your Recently Read Books",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                            if (response.code() == 403) {
+                                Toast.makeText(
+                                    this@BookDetails,
+                                    "Error Occurred: Book Cant be added to recently read",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                        }
+
+
+                    }
+
+
+                })
         }
     }
 

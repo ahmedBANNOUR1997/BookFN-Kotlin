@@ -3,6 +3,7 @@ package com.example.bfn.util
 import com.example.bfn.models.*
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
+import okhttp3.Request
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -49,6 +50,9 @@ interface ApiService {
 
     @POST("listRecentlyRead")
     fun showAllRecentlyReadBooks(@Body user_id: UserY): Call<RecentlyReadBooks?>
+
+    @POST("addLikesBook")
+    fun addBookToRecentlyRead(@Body request: AddBookRecentlyRead): Call<RecentlyBookAdded>
 
 
     @GET
