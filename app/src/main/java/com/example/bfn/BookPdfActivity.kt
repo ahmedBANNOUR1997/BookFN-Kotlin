@@ -31,7 +31,6 @@ class BookPdfActivity : AppCompatActivity() {
             if (result?.resultCode == Activity.RESULT_OK) {
                 fileUri = result.data?.data
                 binding.pdfView.fromUri(fileUri)
-                    .pages(0, 2, 1, 3, 3, 3) // all pages are displayed by default
                     .enableSwipe(true) // allows to block changing pages using swipe
                     .swipeHorizontal(false)
                     .enableDoubletap(true)
@@ -44,7 +43,7 @@ class BookPdfActivity : AppCompatActivity() {
                     .spacing(0)
                     .load()
 
-            } else Log.d("ahmed", "Uri from file is null")
+            } else Log.d("kou", "Uri from file is null")
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,7 +128,6 @@ class BookPdfActivity : AppCompatActivity() {
             fos.close()
 
             binding.pdfView.fromUri(pdfFileName.toUri())
-                 // all pages are displayed by default
                 .enableSwipe(true) // allows to block changing pages using swipe
                 .swipeHorizontal(false)
                 .enableDoubletap(true)

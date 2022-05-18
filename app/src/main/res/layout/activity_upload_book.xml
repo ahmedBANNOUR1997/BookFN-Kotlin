@@ -55,11 +55,12 @@
     <EditText
         android:id="@+id/edTitle"
         style="@style/edit_book"
+        android:layout_height="48dp"
         android:background="@drawable/bg_inputs"
         android:ems="10"
         android:hint="Title"
-        android:inputType="textPersonName"
 
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,12 +69,13 @@
     <EditText
         android:id="@+id/edAuthor"
         style="@style/edit_book"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/bg_inputs"
         android:ems="10"
-        android:hint="author"
 
 
+        android:hint="Author"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.94"
@@ -84,14 +86,15 @@
         android:id="@+id/edPrice"
         style="@style/edit_book"
         android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
 
+        android:layout_marginEnd="16dp"
         android:background="@drawable/bg_inputs"
         android:ems="10"
-        android:hint="price"
 
+        android:hint="Price"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.406"
@@ -102,14 +105,15 @@
         android:id="@+id/edCategory"
         style="@style/edit_book"
         android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
 
+        android:layout_marginEnd="16dp"
         android:background="@drawable/bg_inputs"
         android:ems="10"
-        android:hint="Category"
 
+        android:hint="Category"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,14 +123,15 @@
         android:id="@+id/edNumPages"
         style="@style/edit_book"
         android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+
         android:background="@drawable/bg_inputs"
-
         android:ems="10"
-        android:hint="edNumPages"
 
+        android:hint="Pages"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,6 +141,7 @@
         android:id="@+id/edDesc"
         style="@style/edit_book"
         android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
@@ -152,7 +158,7 @@
         android:layout_width="100dp"
         android:layout_height="150dp"
         android:layout_margin="10dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="32dp"
         android:layout_marginBottom="24dp"
 
         android:scaleType="centerCrop"
@@ -164,31 +170,33 @@
         app:srcCompat="@drawable/ic_book_pl" />
 
     <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imAudio"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/imBook"
+        app:layout_constraintEnd_toStartOf="@+id/imPdf"
+        app:layout_constraintStart_toEndOf="@+id/imBook"
+        app:layout_constraintTop_toTopOf="@+id/imBook"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+        app:srcCompat="@drawable/ic_audio" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imPdf"
         android:layout_width="100dp"
         android:layout_height="150dp"
 
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="32dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imBook"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
         app:srcCompat="@drawable/ic_pdf" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animYes"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imBook"
-        app:layout_constraintEnd_toStartOf="@+id/imPdf"
-        app:layout_constraintStart_toEndOf="@+id/imBook"
-        app:layout_constraintTop_toTopOf="@+id/imBook"
-        app:lottie_autoPlay="false"
-        app:lottie_fileName="ic_yes.json" />
-
     <Button
-        android:id="@+id/button3"
-        style="@style/btnRead"
+        android:id="@+id/btnUpload"
+        style="@style/btnUpload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -196,4 +204,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ic_yes"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imPdf"
+
+        app:layout_constraintEnd_toEndOf="@+id/imPdf"
+        app:layout_constraintStart_toStartOf="@+id/imPdf"
+        app:layout_constraintTop_toTopOf="@+id/imPdf"
+        app:lottie_autoPlay="false"
+        app:lottie_fileName="ic_yes.json" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ic_yes2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imAudio"
+        app:layout_constraintEnd_toEndOf="@+id/imAudio"
+        app:layout_constraintStart_toStartOf="@+id/imAudio"
+        app:layout_constraintTop_toTopOf="@+id/imAudio"
+        app:lottie_autoPlay="false"
+        app:lottie_fileName="ic_yes.json" />
 </androidx.constraintlayout.widget.ConstraintLayout>

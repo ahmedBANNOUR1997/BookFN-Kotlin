@@ -1,9 +1,13 @@
 package com.example.bfn.util
 
 import com.google.gson.GsonBuilder
+import okhttp3.MediaType
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 
 object ApiClient {
 
@@ -23,4 +27,17 @@ object ApiClient {
 
 
     val apiService = retrofit.create(ApiService::class.java)
+
+    fun createPartFromString(descriptionString: String): RequestBody {
+        return RequestBody.create(MediaType.parse("multipart/form-data"), descriptionString)
+    }
+
+    fun prepareFilePart(partName: String, file: File): MultipartBody.Part {
+
+        // create RequestBody instance from file
+        val requestFile: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+
+        // MultipartBody.Part is used to send also the actual file name
+        return MultipartBody.Part.createFormData(partName, file.name, requestFile)
+    }
 }

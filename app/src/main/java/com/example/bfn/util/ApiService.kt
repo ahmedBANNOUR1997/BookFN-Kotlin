@@ -68,8 +68,12 @@ interface ApiService {
     @POST
     fun uploadBook(
         @PartMap partMap: Map<String, RequestBody>,
-        @Part image: MultipartBody.Part,
-        @Part audio: MultipartBody.Part,
-        @Part pdf: MultipartBody.Part
+        @Part coverImage: MultipartBody.Part,
+        @Part fileAudio: MultipartBody.Part,
+        @Part filePDF: MultipartBody.Part
     )
+
+    @FormUrlEncoded
+    @POST("change-password")
+    fun changerMdp(@FieldMap params: HashMap<String?, String?>): Call<JsonObject>
 }
