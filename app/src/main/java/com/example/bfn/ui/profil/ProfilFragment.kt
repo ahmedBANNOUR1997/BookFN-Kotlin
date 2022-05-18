@@ -50,7 +50,7 @@ import java.io.*
 class ProfilFragment : Fragment() {
 
     private lateinit var profilViewModel: ProfilViewModel
-    private val apiservice = ApiClient.apiService
+
     lateinit var nom_prenom : TextView
     lateinit var picture : ImageView
     lateinit var  full_screen_picture_iv : ImageView
@@ -113,30 +113,6 @@ class ProfilFragment : Fragment() {
         nom_prenom.text = UserSession.fullName()
 
 
-        val token = PrefsManager.geToken(requireActivity())
-        token?.let {
-            apiservice.getUserById(UserX(token)).enqueue(object : Callback<GetUserResponse> {
-                override fun onFailure(call: Call<GetUserResponse>, t: Throwable) {
-                    t.printStackTrace()
-                }
-
-                override fun onResponse(
-                    call: Call<GetUserResponse>,
-                    response: Response<GetUserResponse>
-                ) {
-                    if (response.isSuccessful && response.body() != null) {
-                        val content = response.body().dataid
-                        nom_prenom.text = content.firstName.toString() + content.lastName.toString()
-                        if (content.img.contains("http"))
-                            Picasso.get().load(content.img.toString()).into(picture)
-
-                        else
-                            Picasso.get().load("http://10.0.2.2:3000/uploads/users/${content.img}")
-                                .into(picture)
-                    }
-                }
-            })
-        }
 
         Picasso.get().load("http://10.0.2.2:3000/uploads/users/${UserSession.img}").into(picture)
 

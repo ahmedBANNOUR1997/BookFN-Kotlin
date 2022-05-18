@@ -92,7 +92,7 @@ class BookDetails : AppCompatActivity() {
                         binding.tvAuthor.text = book.author.toString()
                         binding.btnRead.setOnClickListener {
                             addBookToRecentlyRead()
-                            BookPdfActivity.start(this@BookDetails, book.filePDF)
+                            BookPdfActivity.start(this@BookDetails,book.filePDF.replace("localhost","10.0.2.2"))
                         }
 
 
