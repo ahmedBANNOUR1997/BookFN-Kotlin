@@ -1,5 +1,6 @@
 package com.example.bfn.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bfn.Adapters.BooksAdapter
 import com.example.bfn.Adapters.RecentlyReadBooksAdapter
 import com.example.bfn.BookDetails
+import com.example.bfn.BookPdfActivity
 import com.example.bfn.databinding.FragmentHomeBinding
 import com.example.bfn.models.*
 import com.example.bfn.prefs.PrefsManager
@@ -21,6 +23,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
@@ -29,7 +32,8 @@ class HomeFragment : Fragment() {
     private val apiservice = ApiClient.apiService
     private val readBooksAdapter = BooksAdapter()
     private val recentlyReadBooksAdapter = RecentlyReadBooksAdapter()
-
+    private var bookPATH : String? = null
+    private var BOOK_PDF = "BOOK_PDF"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,8 +46,17 @@ class HomeFragment : Fragment() {
 
         setupUi()
 
+        binding.btnContinueReading.setOnClickListener {
+            val intent = Intent(activity, BookPdfActivity::class.java)
+            var bookURLL = bookPATH?.replace("localhost","10.0.2.2")
+            intent.putExtra(BOOK_PDF,bookURLL)
+            startActivity(intent)
+        }
+
+
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -131,6 +144,9 @@ class HomeFragment : Fragment() {
                     if (response.isSuccessful){
 
                         val LastReadBook = response.body()?.lastBook
+                        if (LastReadBook != null) {
+                            bookPATH = LastReadBook.filePDF.toString()
+                        }
                             Log.d("AHMED", response.body().toString())
                         LastReadBook?.let {
                             // this condition is allowing the LastReadBook to be null miselich ama mannajamich

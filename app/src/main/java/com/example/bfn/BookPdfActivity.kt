@@ -43,7 +43,7 @@ class BookPdfActivity : AppCompatActivity() {
                     .spacing(0)
                     .load()
 
-            } else Log.d("kou", "Uri from file is null")
+            } else Log.d("bouhmid", "Uri from file is null")
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
