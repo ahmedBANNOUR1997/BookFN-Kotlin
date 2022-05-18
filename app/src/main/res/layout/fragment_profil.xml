@@ -256,9 +256,15 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
         >
+
         <Button
+            android:id="@+id/deconnecter_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
             android:drawableStart="@drawable/ic_baseline_exit_to_app_24"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
@@ -266,13 +272,8 @@
             android:gravity="start|center_vertical"
             android:text="Logout"
             android:textColor="@color/noir"
-            android:textSize="15sp"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
 
-            android:id="@+id/deconnecter_btn"
+            android:textSize="15sp"
 
             />
     </RelativeLayout>

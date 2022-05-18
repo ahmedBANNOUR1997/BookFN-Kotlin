@@ -1,5 +1,7 @@
 package com.example.bfn
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.example.bfn.util.ApiClient
 import com.example.bfn.util.UserSession
 
@@ -80,7 +83,23 @@ class ResetPassActivity : AppCompatActivity() {
                             if(response.code() == 201)
                             {
 
-                                onBackPressed()
+                                //onBackPressed()
+                                val sharedPref = getSharedPreferences(
+                                    getString(R.string.user), Context.MODE_PRIVATE)
+
+                                if (sharedPref != null) {
+                                    with (sharedPref.edit()) {
+                                        clear()
+                                        commit()
+                                    }
+                                }
+
+                                UserSession.reset()
+
+                                val intent = Intent(this@ResetPassActivity, LoginActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                                ActivityCompat.finishAffinity(this@ResetPassActivity as Activity)
 
                             }
 
