@@ -78,7 +78,7 @@
                         android:layout_width="142dp"
                         android:layout_height="226dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/b_i_youmustknoweverything" />
+                        android:src="@drawable/stephenking_the_inst" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -107,7 +107,7 @@
                     android:fontFamily="@font/sfpro"
                     android:maxLines="3"
                     android:minLines="1"
-                    android:text="by Stephen Hawking"
+                    android:text="by Stephen King"
                     android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="@+id/im_bg"
                     app:layout_constraintStart_toStartOf="@+id/tvBookTitle"
