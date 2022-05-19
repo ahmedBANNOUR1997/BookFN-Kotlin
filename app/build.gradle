@@ -66,6 +66,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:5.0.3'
     implementation 'jp.wasabeef:blurry:3.0.0'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'com.itextpdf:itextg:5.5.10'
 
 
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bfn.BookDetails.Companion.start
 import com.example.bfn.databinding.ActivityBookDetailsBinding
 import com.example.bfn.models.*
 import com.example.bfn.prefs.PrefsManager
@@ -93,6 +94,9 @@ class BookDetails : AppCompatActivity() {
                         binding.btnRead.setOnClickListener {
                             addBookToRecentlyRead()
                             BookPdfActivity.start(this@BookDetails,book.filePDF.replace("localhost","10.0.2.2"))
+                        }
+                        binding.btnPlay.setOnClickListener {
+                            TextToSpeech.start(this@BookDetails,book.filePDF.replace("localhost","10.0.2.2"))
                         }
 
 

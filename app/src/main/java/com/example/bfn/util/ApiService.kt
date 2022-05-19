@@ -65,13 +65,15 @@ interface ApiService {
     @GET
     fun getPdf(@Url pdfName: String): Call<ResponseBody>
 
-    @POST
+    @Multipart
+    @JvmSuppressWildcards
+    @POST("addbook")
     fun uploadBook(
         @PartMap partMap: Map<String, RequestBody>,
         @Part coverImage: MultipartBody.Part,
         @Part fileAudio: MultipartBody.Part,
         @Part filePDF: MultipartBody.Part
-    )
+    ):Call<JSONObject>
 
     @FormUrlEncoded
     @POST("change-password")
