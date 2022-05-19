@@ -14,6 +14,7 @@ import com.example.bfn.Adapters.BooksAdapter
 import com.example.bfn.Adapters.RecentlyReadBooksAdapter
 import com.example.bfn.BookDetails
 import com.example.bfn.BookPdfActivity
+import com.example.bfn.TextToSpeech
 import com.example.bfn.databinding.FragmentHomeBinding
 import com.example.bfn.models.*
 import com.example.bfn.prefs.PrefsManager
@@ -34,6 +35,7 @@ class HomeFragment : Fragment() {
     private val recentlyReadBooksAdapter = RecentlyReadBooksAdapter()
     private var bookPATH : String? = null
     private var BOOK_PDF = "BOOK_PDF"
+    private var SPEECH_PDF = "SPEECH_PDF"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,8 +50,14 @@ class HomeFragment : Fragment() {
 
         binding.btnContinueReading.setOnClickListener {
             val intent = Intent(activity, BookPdfActivity::class.java)
-            var bookURLL = bookPATH?.replace("localhost","10.0.2.2")
+            var bookURLL = bookPATH?.replace("localhost:3000","warm-spire-97725.herokuapp.com")
             intent.putExtra(BOOK_PDF,bookURLL)
+            startActivity(intent)
+        }
+        binding.btnAudioBook.setOnClickListener{
+            val intent = Intent(activity, TextToSpeech::class.java)
+            var bookURLL = bookPATH?.replace("localhost:3000","warm-spire-97725.herokuapp.com")
+            intent.putExtra(SPEECH_PDF,bookURLL)
             startActivity(intent)
         }
 
@@ -153,7 +161,7 @@ class HomeFragment : Fragment() {
                             // nconditioni ala est ce que LastReadBook est null ou pas !!!
                             binding.tvBookTitle.text = it.title
                             binding.tvAuteur.text = "By " + it.author
-                            Picasso.get().load(it?.coverImage?.replace("localhost","10.0.2.2")).into(binding.imHomePicture)
+                            Picasso.get().load(it?.coverImage?.replace("localhost:3000","warm-spire-97725.herokuapp.com")).into(binding.imHomePicture)
 
                         }
                         if(LastReadBook == null ) {

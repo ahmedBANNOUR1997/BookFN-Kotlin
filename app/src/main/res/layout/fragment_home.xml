@@ -88,8 +88,13 @@
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/sfbold"
                     android:text="The  \n Institute"
+                    app:layout_constraintWidth="0dp"
+                    android:minLines="1"
+                    android:maxLines="3"
                     android:textColor="@android:color/white"
                     android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.063"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
                     app:layout_constraintTop_toTopOf="@+id/imageView"
                     tools:text="The  \n institute" />
@@ -98,12 +103,16 @@
                     android:id="@+id/tvAuteur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/sfpro"
+                    android:maxLines="3"
+                    android:minLines="1"
                     android:text="by Stephen Hawking"
                     android:textColor="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/im_bg"
                     app:layout_constraintStart_toStartOf="@+id/tvBookTitle"
-                    app:layout_constraintTop_toBottomOf="@+id/tvBookTitle" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvBookTitle"
+                    app:layout_constraintWidth="0dp" />
 
                 <Button
                     android:id="@+id/btnContinueReading"
@@ -119,8 +128,10 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/btnAudioBook"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.82"
-                    app:layout_constraintStart_toEndOf="@+id/imageView" />
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAuteur"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <Button
                     android:id="@+id/btnAudioBook"
@@ -128,14 +139,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="-40dp"
                     android:background="@drawable/btn_book"
-                    android:text="Play audiobook"
                     android:fontFamily="@font/sfreg"
+                    android:text="Play audiobook"
                     android:textAllCaps="false"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.82"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/imageView" />
 
                 <TextView

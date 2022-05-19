@@ -105,9 +105,9 @@ class TextToSpeech : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
         }
 
-        binding.fabSelectFile.setOnClickListener {
+        /*binding.fabSelectFile.setOnClickListener {
             // pickFile(selectPdfResult)
-        }
+        }*/
 
         binding.fabNextPage.setOnClickListener {
             nextPage()
@@ -148,9 +148,10 @@ class TextToSpeech : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
         }
 
-        binding.fabAddBig.setOnClickListener {
+      /*  binding.fabAddBig.setOnClickListener {
             pickFile(selectPdfResult)
         }
+        */
     }
 
     //Changes to Next Page
@@ -280,7 +281,7 @@ class TextToSpeech : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.fabPlayTts.isVisible = false
         binding.fabPreviousPage.isVisible = false
         binding.fabNextPage.isVisible = false
-        binding.fabSelectFile.isVisible = false
+      //  binding.fabSelectFile.isVisible = false
         binding.tvCurrentPgNo.isVisible = false
         binding.tvPgNoSeperator.isVisible = false
         binding.tvTotalPages.isVisible = false
@@ -292,15 +293,15 @@ class TextToSpeech : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun showControls() {
 
-        binding.fabAddBig.isVisible = false
-        binding.tvHead1.isVisible = false
-        binding.tvHead2.isVisible = false
-        binding.tvHead3.isVisible = false
+       // binding.fabAddBig.isVisible = false
+      //  binding.tvHead1.isVisible = false
+       // binding.tvHead2.isVisible = false
+     //   binding.tvHead3.isVisible = false
 
         binding.fabPlayTts.isVisible = true
         binding.fabPreviousPage.isVisible = true
         binding.fabNextPage.isVisible = true
-        binding.fabSelectFile.isVisible = true
+       // binding.fabSelectFile.isVisible = true
         binding.tvCurrentPgNo.isVisible = true
         binding.tvPgNoSeperator.isVisible = true
         binding.tvTotalPages.isVisible = true
