@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gris_light"
+    android:background="@color/white"
     tools:context=".TextToSpeech">
 
     <ScrollView
@@ -26,10 +26,12 @@
             android:id="@+id/tv_pageContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/sfpro"
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="34sp"
+            android:textStyle="bold"
             android:text=""
             android:textColor="@android:color/black"
-            android:textSize="25sp" />
+             />
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -69,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:textColor="@color/white"
+        android:textColor="@color/viridian"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/tv_pgNoSeperator"
         app:layout_constraintHorizontal_bias="0.5"

@@ -81,9 +81,9 @@ class BookDetails : AppCompatActivity() {
                         val bookid = response.body().response._id
                         PrefsManager.seBookid(this@BookDetails, bookid = bookid)
 
-                        Picasso.get().load(book.coverImage.replace("localhost:3000", "warm-spire-97725.herokuapp.com"))
+                        Picasso.get().load(book.coverImage.replace("localhost", "10.0.2.2"))
                             .into(binding.imBook)
-                        Picasso.get().load(book.coverImage.replace("localhost:3000", "warm-spire-97725.herokuapp.com"))
+                        Picasso.get().load(book.coverImage.replace("localhost", "10.0.2.2"))
                             .into(binding.imBlurBook)
                         binding.pages.text = book.nbPages.toString()
                         binding.duration.text = "10:45 min "
@@ -93,10 +93,10 @@ class BookDetails : AppCompatActivity() {
                         binding.tvAuthor.text = book.author.toString()
                         binding.btnRead.setOnClickListener {
                             addBookToRecentlyRead()
-                            BookPdfActivity.start(this@BookDetails,book.filePDF.replace("localhost:3000","warm-spire-97725.herokuapp.com"))
+                            BookPdfActivity.start(this@BookDetails,book.filePDF.replace("localhost","10.0.2.2"))
                         }
                         binding.btnPlay.setOnClickListener {
-                            TextToSpeech.start(this@BookDetails,book.filePDF.replace("localhost:3000","warm-spire-97725.herokuapp.com"))
+                            TextToSpeech.start(this@BookDetails,book.filePDF.replace("localhost","10.0.2.2"))
                         }
 
 

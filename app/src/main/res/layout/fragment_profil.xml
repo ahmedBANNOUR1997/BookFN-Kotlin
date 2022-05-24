@@ -154,7 +154,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sfpro"
         android:background="@android:color/transparent"
-        android:drawableStart="@drawable/ic_outline_bug_report_24"
+        android:drawableStart="@drawable/ic_baseline_lock_open_24"
         android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
         android:drawablePadding="10dp"
         android:gravity="start|center_vertical"
@@ -210,53 +210,6 @@
         android:layout_marginTop="10dp"
 
         android:id="@+id/profile_messages_btn"
-        />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sfpro"
-        android:background="@android:color/transparent"
-        android:drawableStart="@drawable/ic_baseline_help_24"
-        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-        android:drawablePadding="10dp"
-        android:gravity="start|center_vertical"
-        android:text="Help Center"
-        android:textColor="@color/noir"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"
-
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sfpro"
-        android:background="@android:color/transparent"
-        android:drawableStart="@drawable/ic_outline_bug_report_24"
-        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-        android:drawablePadding="10dp"
-        android:gravity="start|center_vertical"
-        android:text="About"
-        android:textColor="@color/noir"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"
-
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/sfpro"
-        android:drawableStart="@drawable/ic_baseline_lock_open_24"
-        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-        android:drawablePadding="10dp"
-        android:gravity="start|center_vertical"
-        android:text="Reset password"
-        android:textColor="@color/noir"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"
-
-        android:id="@+id/reset_pass_btn"
         />
 
     <RelativeLayout

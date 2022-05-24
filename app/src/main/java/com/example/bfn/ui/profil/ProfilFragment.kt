@@ -114,7 +114,7 @@ class ProfilFragment : Fragment() {
 
 
 
-        Picasso.get().load("https://warm-spire-97725.herokuapp.com/uploads/users/${UserSession.img}").into(picture)
+        Picasso.get().load("http://10.0.2.2:3000/uploads/users/${UserSession.img}").into(picture)
 
         val fullScreenLayout = root.findViewById<FrameLayout>(R.id.fullScreenLayout)
 
@@ -122,7 +122,7 @@ class ProfilFragment : Fragment() {
         val close_picture = root.findViewById<Button>(R.id.close_picture_btn)
         full_screen_picture_iv = root.findViewById<ImageView>(R.id.full_screen_picture_ivv)
 
-        Picasso.get().load("https://warm-spire-97725.herokuapp.com/uploads/users/${UserSession.img}").into(full_screen_picture_iv)
+        Picasso.get().load("http://10.0.2.2:3000/uploads/users/${UserSession.img}").into(full_screen_picture_iv)
 
         picture.setOnClickListener{
             fullScreenLayout.visibility = View.VISIBLE
@@ -293,7 +293,7 @@ class ProfilFragment : Fragment() {
     override fun onResume() {
 
         nom_prenom.text = UserSession.fullName()
-        Picasso.get().load("https://warm-spire-97725.herokuapp.com/uploads/users/${UserSession.img}").into(picture)
+        Picasso.get().load("http://10.0.2.2:3000/uploads/users/${UserSession.img}").into(picture)
 
         super.onResume()
 

@@ -50,13 +50,13 @@ class HomeFragment : Fragment() {
 
         binding.btnContinueReading.setOnClickListener {
             val intent = Intent(activity, BookPdfActivity::class.java)
-            var bookURLL = bookPATH?.replace("localhost:3000","warm-spire-97725.herokuapp.com")
+            var bookURLL = bookPATH?.replace("localhost","10.0.2.2")
             intent.putExtra(BOOK_PDF,bookURLL)
             startActivity(intent)
         }
         binding.btnAudioBook.setOnClickListener{
             val intent = Intent(activity, TextToSpeech::class.java)
-            var bookURLL = bookPATH?.replace("localhost:3000","warm-spire-97725.herokuapp.com")
+            var bookURLL = bookPATH?.replace("localhost","10.0.2.2")
             intent.putExtra(SPEECH_PDF,bookURLL)
             startActivity(intent)
         }
@@ -161,7 +161,7 @@ class HomeFragment : Fragment() {
                             // nconditioni ala est ce que LastReadBook est null ou pas !!!
                             binding.tvBookTitle.text = it.title
                             binding.tvAuteur.text = "By " + it.author
-                            Picasso.get().load(it?.coverImage?.replace("localhost:3000","warm-spire-97725.herokuapp.com")).into(binding.imHomePicture)
+                            Picasso.get().load(it?.coverImage?.replace("localhost","10.0.2.2")).into(binding.imHomePicture)
 
                         }
                         if(LastReadBook == null ) {
