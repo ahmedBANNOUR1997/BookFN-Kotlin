@@ -96,7 +96,7 @@
         android:textStyle="bold"
         android:fontFamily="@font/sflight"
         android:textAllCaps="false"
-        android:textSize="18sp"
+        android:textSize="20sp"
         />
 
     <TextView

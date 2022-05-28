@@ -21,6 +21,15 @@
             android:name=".BookPdfActivity"
             android:exported="true" />
         <activity
+            android:name=".ResetPasswordActivity"
+            />
+        <activity
+            android:name=".EmailSentActivity"
+            />
+        <activity
+            android:name=".ForgotPwdActivity"
+            />
+        <activity
             android:name=".UploadBook"
             android:exported="true" />
         <activity

@@ -25,13 +25,9 @@ import java.io.File
 
 class UploadBook : AppCompatActivity() {
     private val apiService = ApiClient.apiService
-    private var imageUri: Uri? = null
-    private var audioUri: Uri? = null
-    private var pdfUri: Uri? = null
     private var fileUri: Uri? = null
 
     private lateinit var coverImage :MultipartBody.Part
-    private lateinit var fileAudio :MultipartBody.Part
     private lateinit var filePDF :MultipartBody.Part
 
 
@@ -64,17 +60,6 @@ class UploadBook : AppCompatActivity() {
                         }
                     }
 
-                    "mp3" -> {
-                        fileUri = result
-                        ic_yes2.playAnimation()
-                        fileUri?.let { fileUri ->
-                            btnUpload.isEnabled = true
-                            val x = File(fileUri.path!!)
-                            fileAudio  = prepareFilePart("fileAudio",File(RealPathUtil.getRealPath(this, fileUri)!!))
-
-                        }
-                    }
-
                 }
 
 
@@ -100,9 +85,6 @@ class UploadBook : AppCompatActivity() {
 
         }
 
-        imAudio.setOnClickListener {
-            getFileUri.launch("audio/*")
-        }
         upload()
 
     }
@@ -125,7 +107,7 @@ class UploadBook : AppCompatActivity() {
 
 
 
-                apiService.uploadBook(map,coverImage,filePDF,fileAudio).enqueue(object:Callback<JSONObject>{
+                apiService.uploadBook(map,coverImage,filePDF).enqueue(object:Callback<JSONObject>{
                     override fun onResponse(call: Call<JSONObject>?, response: Response<JSONObject>) {
                         if (response.isSuccessful){
                             Toast.makeText(

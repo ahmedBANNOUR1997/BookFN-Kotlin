@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NavUtils
@@ -32,6 +33,11 @@ class LoginActivity : AppCompatActivity() {
         val emailTXT = findViewById<EditText>(R.id.email_text)
         val pwdTXT = findViewById<EditText>(R.id.pass_text)
         val login_signup_btn = findViewById<Button>(R.id.login_signup_btn)
+        val forgot_pwd_txt = findViewById<TextView>(R.id.forgot_pwd)
+        forgot_pwd_txt.setOnClickListener{
+            val intent = Intent(this@LoginActivity, ForgotPwdActivity::class.java)
+            startActivity(intent)
+        }
 
         loginBtn.setOnClickListener {
 

@@ -40,7 +40,6 @@ class BookShelfAdapter : RecyclerView.Adapter<BookShelfAdapter.ViewHolder>() {
                 }
             }
         }
-
     }
 
 
@@ -54,6 +53,7 @@ class BookShelfAdapter : RecyclerView.Adapter<BookShelfAdapter.ViewHolder>() {
             DiffUtil.calculateDiff(SimpleCallback(this.books, newBooks) { it.id!! })
         this.books = newBooks
         diffResult.dispatchUpdatesTo(this)
+        this.notifyDataSetChanged()
     }
 
     class ViewHolder(val binding: ItemRecentBookBinding) : RecyclerView.ViewHolder(binding.root)

@@ -12,7 +12,6 @@ data class Book (
     @SerializedName("category") val category: String?="",
     @SerializedName("nbPages") val nbPages: String?="",
     @SerializedName("filePDF") val filePDF: String?="",
-    @SerializedName("fileAudio") val fileAudio: String?="",
     @SerializedName("like") val like: Array<String?> = emptyArray(),
     @SerializedName("nbVue") val nbVue: String?="",
     @SerializedName("userid") val userid: String?=""
@@ -34,7 +33,6 @@ data class Book (
         if (category != other.category) return false
         if (nbPages != other.nbPages) return false
         if (filePDF != other.filePDF) return false
-        if (fileAudio != other.fileAudio) return false
         if (!like.contentEquals(other.like)) return false
         if (nbVue != other.nbVue) return false
         if (userid != other.userid) return false
@@ -52,7 +50,6 @@ data class Book (
         result = 31 * result + (category?.hashCode() ?: 0)
         result = 31 * result + (nbPages?.hashCode() ?: 0)
         result = 31 * result + (filePDF?.hashCode() ?: 0)
-        result = 31 * result + (fileAudio?.hashCode() ?: 0)
         result = 31 * result + like.contentHashCode()
         result = 31 * result + (nbVue?.hashCode() ?: 0)
         result = 31 * result + (userid?.hashCode() ?: 0)
@@ -60,7 +57,7 @@ data class Book (
     }
 
     override fun toString(): String {
-        return "Books(id=$id, title=$title, author=$author, price=$price, description=$description, coverImage=$coverImage, category=$category, nbPages=$nbPages, filePDF=$filePDF, fileAudio=$fileAudio, like=${like.contentToString()}, nbVue=$nbVue, userid=$userid)"
+        return "Books(id=$id, title=$title, author=$author, price=$price, description=$description, coverImage=$coverImage, category=$category, nbPages=$nbPages, filePDF=$filePDF, like=${like.contentToString()}, nbVue=$nbVue, userid=$userid)"
     }
 
 

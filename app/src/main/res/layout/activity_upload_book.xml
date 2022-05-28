@@ -169,31 +169,20 @@
 
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ic_yes"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edNumPages"
-        app:layout_constraintVertical_bias="0.23000002"
+        app:layout_constraintVertical_bias="0.315"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
         app:srcCompat="@drawable/ic_book_pl" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imAudio"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/imBook"
-        app:layout_constraintEnd_toStartOf="@+id/imPdf"
-        app:layout_constraintStart_toEndOf="@+id/imBook"
-        app:layout_constraintTop_toTopOf="@+id/imBook"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-        app:srcCompat="@drawable/ic_audio" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imPdf"
         android:layout_width="100dp"
         android:layout_height="150dp"
 
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imBook"
@@ -205,8 +194,11 @@
         style="@style/btnUpload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/sflight"
         android:layout_marginBottom="24dp"
         android:text="Upload"
+        android:textColor="@color/gris_light"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -223,15 +215,4 @@
         app:lottie_autoPlay="false"
         app:lottie_fileName="ic_yes.json" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/ic_yes2"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/imAudio"
-        app:layout_constraintEnd_toEndOf="@+id/imAudio"
-        app:layout_constraintStart_toStartOf="@+id/imAudio"
-        app:layout_constraintTop_toTopOf="@+id/imAudio"
-        app:lottie_autoPlay="false"
-        app:lottie_fileName="ic_yes.json" />
 </androidx.constraintlayout.widget.ConstraintLayout>

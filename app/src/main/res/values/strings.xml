@@ -9,6 +9,12 @@
     <string name="password">Password</string>
     <string name="token">realtoken</string>
     <string name="selectionner_image">Choose a Picture</string>
+    <string name="email_envoye">E-mail Sent</string>
+    <string name="code_reinit">Reset code</string>
+    <string name="renvoyer">Resend code</string>
+    <string name="confirmer">Confirm</string>
+    pas_email
+    <string name="pas_email">You haven\'t already received the e-mail ?</string>
     <string name="camera">Camera</string>
     <string name="galerie">Galerie</string>
     <string name="delete_account">Are you sure you want to delete your account ?</string>
@@ -37,8 +43,13 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">BookShelf</string>
-    <string name="champ_vide">Le champ ne doit pas être vide!</string>
-
+    <string name="champ_vide">This field canno\'t be empty!</string>
+    <string name="code_incorrect">Reset password code is incorrect</string>
+    <string name="changer_mdp">Change your password</string>
+    <string name="reinit_mdp">Reset your password</string>
+    <string name="desc_mdp_oublie">We will send a reset code to your e-mail account.</string>
+    <string name="mdp_oublie">Forgotten password ?</string>
+    <string name="longeur_code">Please enter a 5 digits code</string>
     <string name="app_name1">Pdf Reader</string>
     <string name="heading_2">Read your PDF using Text to Speech</string>
     <string name="pdf_reader">PDF Reader</string>

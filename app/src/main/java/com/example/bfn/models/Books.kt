@@ -8,7 +8,6 @@ data class Books(
     val coverImage: String,
     val createdAt: String,
     val description: String,
-    val fileAudio: String,
     val filePDF: String,
     val isPodcast: String,
     val like: List<Any>,

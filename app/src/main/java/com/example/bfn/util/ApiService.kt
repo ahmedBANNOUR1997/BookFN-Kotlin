@@ -71,11 +71,18 @@ interface ApiService {
     fun uploadBook(
         @PartMap partMap: Map<String, RequestBody>,
         @Part coverImage: MultipartBody.Part,
-        @Part fileAudio: MultipartBody.Part,
         @Part filePDF: MultipartBody.Part
     ):Call<JSONObject>
 
     @FormUrlEncoded
     @POST("change-password")
     fun changerMdp(@FieldMap params: HashMap<String?, String?>): Call<JsonObject>
+
+    @FormUrlEncoded
+    @POST("forgot-password")
+    fun resetPass(@Field("email") email : String, @Field("codeDeReinit") codeDeReinit : String): Call<JsonObject>
+
+    @FormUrlEncoded
+    @POST("reset-password")
+    fun doResetPass(@Field("email") email : String, @Field("newPassword") newPassword : String): Call<JsonObject>
 }
