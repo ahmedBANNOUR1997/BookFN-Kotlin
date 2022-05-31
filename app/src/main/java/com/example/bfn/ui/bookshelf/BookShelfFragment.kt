@@ -85,5 +85,31 @@ class BookShelfFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        apiservice.getAllBooks().enqueue(object : Callback<BooksResponse> {
+            override fun onResponse(
+                call: Call<BooksResponse>,
+                response: Response<BooksResponse>
+            ) {
+                if (response.isSuccessful) {
+                    mAdapter.updateBooks(response.body().response)
+                    mAdapter.openBook {
+                        // Toast.makeText(requireActivity(),it,Toast.LENGTH_SHORT).show()
+                        BookDetails.start(requireActivity(),it)
+
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<BooksResponse>?, t: Throwable?) {
+                Log.d("krahet 7yeti",t?.message.toString())
+                Toast.makeText(requireActivity(), "Network failure", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
 
 }

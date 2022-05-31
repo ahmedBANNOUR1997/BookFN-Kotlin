@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -63,8 +64,55 @@
                         android:background="@color/gris_light"
                         android:fitsSystemWindows="true"
                         android:maxHeight="200dp"
-                        android:scaleType="centerCrop"
-                         />
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/lang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="28dp"
+                        android:text="TextView"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/imBlurBook"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvLanguage"
+                        app:layout_constraintVertical_bias="0.428" />
+
+                    <TextView
+                        android:id="@+id/pages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:text="TextView"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/imBlurBook"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPages"
+                        app:layout_constraintVertical_bias="0.428" />
+
+                    <TextView
+                        android:id="@+id/tvLanguage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="28dp"
+                        android:layout_marginBottom="32dp"
+                        android:fontFamily="@font/sflight"
+                        android:text="Language"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@id/lang"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvPages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginBottom="32dp"
+                        android:fontFamily="@font/sflight"
+                        android:text="Pages"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@id/pages"
+                        app:layout_constraintStart_toStartOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -133,75 +181,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvAuthor"
                     app:lottie_autoPlay="true"
                     app:lottie_fileName="ic_stars.json" />
-
-                <TextView
-                    android:id="@+id/tvPages"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:fontFamily="@font/sflight"
-                    android:text="Pages"
-                    android:textColor="@color/white"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tvDuration" />
-
-                <TextView
-                    android:id="@+id/tvDuration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/sflight"
-                    android:text="Duration"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toStartOf="@+id/tvLanguage"
-                    app:layout_constraintStart_toEndOf="@+id/tvPages"
-                    app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
-
-                <TextView
-                    android:id="@+id/tvLanguage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="32dp"
-                    android:fontFamily="@font/sflight"
-                    android:text="Language"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tvDuration" />
-
-                <TextView
-                    android:id="@+id/pages"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="TextView"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/tvPages"
-                    app:layout_constraintStart_toStartOf="@+id/tvPages"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPages" />
-
-                <TextView
-                    android:id="@+id/duration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="TextView"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="@+id/tvDuration"
-                    app:layout_constraintStart_toStartOf="@+id/tvDuration"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDuration" />
-
-                <TextView
-                    android:id="@+id/lang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="TextView"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="@+id/tvLanguage"
-                    app:layout_constraintStart_toStartOf="@+id/tvLanguage"
-                    app:layout_constraintTop_toBottomOf="@+id/tvLanguage" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

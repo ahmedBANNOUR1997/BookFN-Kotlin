@@ -1,7 +1,10 @@
 package com.example.bfn
 
+import android.content.Context
+import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
@@ -15,20 +18,27 @@ import com.example.bfn.util.RealPathUtil
 import kotlinx.android.synthetic.main.activity_upload_book.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
+import java.io.*
 
 
 class UploadBook : AppCompatActivity() {
     private val apiService = ApiClient.apiService
     private var fileUri: Uri? = null
 
-    private lateinit var coverImage :MultipartBody.Part
-    private lateinit var filePDF :MultipartBody.Part
+    private lateinit var coverImage: MultipartBody.Part
+    private lateinit var filePDF: MultipartBody.Part
+    private val readExternalPermissionContract =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isPermissionAccepted ->
+            if (isPermissionAccepted) {
+                Toast.makeText(this, "Permission is accepted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Permission is declined", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
     private val getFileUri =
@@ -44,9 +54,12 @@ class UploadBook : AppCompatActivity() {
                     "jpg" -> {
                         fileUri = result
                         imBook.setImageURI(result)
-                        fileUri?.let { fileUri ->
+                        fileUri?.let { uri ->
                             btnUpload.isEnabled = true
-                            coverImage= prepareFilePart("coverImage", File(RealPathUtil.getRealPath(this, fileUri)!!))
+
+                            coverImage = prepareFilePart("coverImage", File(RealPathUtil.getRealPath(this,
+                                fileUri!!
+                            )))
 
 
                         }
@@ -54,9 +67,11 @@ class UploadBook : AppCompatActivity() {
                     "pdf" -> {
                         fileUri = result
                         ic_yes.playAnimation()
-                        fileUri?.let { fileUri ->
+                        fileUri?.let { uri ->
                             btnUpload.isEnabled = true
-                            filePDF  = prepareFilePart("filePDF",File(RealPathUtil.getRealPath(this, fileUri)!!))
+                            filePDF  = prepareFilePart("filePDF",File(RealPathUtil.getRealPath(this,
+                                fileUri!!
+                            )))
                         }
                     }
 
@@ -86,9 +101,9 @@ class UploadBook : AppCompatActivity() {
         }
 
         upload()
+        readExternalPermissionContract.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
 
     }
-
 
 
     private fun upload() {
@@ -107,30 +122,39 @@ class UploadBook : AppCompatActivity() {
 
 
 
-                apiService.uploadBook(map,coverImage,filePDF).enqueue(object:Callback<JSONObject>{
-                    override fun onResponse(call: Call<JSONObject>?, response: Response<JSONObject>) {
-                        if (response.isSuccessful){
+                apiService.uploadBook(map, coverImage, filePDF)
+                    .enqueue(object : Callback<JSONObject> {
+                        override fun onResponse(
+                            call: Call<JSONObject>?,
+                            response: Response<JSONObject>
+                        ) {
+                            if (response.isSuccessful) {
+                                Toast.makeText(
+                                    this@UploadBook,
+                                    "Book Added Successfully !!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                onBackPressed()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<JSONObject>?, t: Throwable?) {
                             Toast.makeText(
                                 this@UploadBook,
-                                "Book Added Successfully !!",
+                                "Error Occurred: ${t?.message.toString()}",
                                 Toast.LENGTH_LONG
                             ).show()
-                           onBackPressed()
                         }
-                    }
 
-                    override fun onFailure(call: Call<JSONObject>?, t: Throwable?) {
-                        Toast.makeText(
-                            this@UploadBook,
-                            "Error Occurred: ${t?.message.toString()}",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-
-                })
+                    })
 
 
-            }        }
+            }
+        }
 
     }
+
+
+
+
 }

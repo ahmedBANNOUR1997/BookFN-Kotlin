@@ -41,14 +41,6 @@ class BookDetails : AppCompatActivity() {
 
     }
 
-    override fun onBackPressed() {
-        finish();
-        overridePendingTransition(0, 0);
-        val intent = Intent(this@BookDetails, HomeActivity::class.java)
-        startActivity(intent)
-        overridePendingTransition(0, 0);
-
-    }
 
 
     private fun setupUi() {
@@ -86,7 +78,6 @@ class BookDetails : AppCompatActivity() {
                         Picasso.get().load(book.coverImage.replace("localhost", "10.0.2.2"))
                             .into(binding.imBlurBook)
                         binding.pages.text = book.nbPages.toString()
-                        binding.duration.text = "10:45 min "
                         binding.lang.text = "Fr | Eng"
                         binding.tvPage.text = book.description
                         binding.tvTitile.text = book.title
@@ -170,4 +161,5 @@ class BookDetails : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
+
 }
