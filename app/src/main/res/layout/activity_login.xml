@@ -41,7 +41,6 @@
         android:inputType="textPassword"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:drawableEnd="@drawable/ic_outline_remove_red_eye_24"
         />
 
     <Button
@@ -90,6 +89,5 @@
         android:textSize="15sp"
 
         />
-
 
 </LinearLayout>

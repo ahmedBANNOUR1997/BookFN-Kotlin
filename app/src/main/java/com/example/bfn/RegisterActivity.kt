@@ -2,20 +2,22 @@ package com.example.bfn
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.example.bfn.models.User
 import com.example.bfn.util.ApiClient
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import androidx.annotation.RequiresApi
 
 class RegisterActivity : AppCompatActivity() {
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +31,12 @@ class RegisterActivity : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.register_email_text)
         val password = findViewById<EditText>(R.id.register_pass_text)
         val confirmPwd = findViewById<EditText>(R.id.confirm_pwd)
-
         val signUpBTN = findViewById<Button>(R.id.signup_btn)
+        val forgot_pwd_txt = findViewById<TextView>(R.id.forgotpass_signuptxt)
+        forgot_pwd_txt.setOnClickListener{
+            val intent = Intent(this@RegisterActivity, ForgotPwdActivity::class.java)
+            startActivity(intent)
+        }
 
         signUpBTN.setOnClickListener {
 
@@ -85,6 +91,8 @@ class RegisterActivity : AppCompatActivity() {
                                     "Sign up completed! This is your Activation Code: ${response.message()}",
                                     Toast.LENGTH_LONG
                                 ).show()
+                                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                                startActivity(intent)
                             }
 
                             if(response.code() == 403)
@@ -108,8 +116,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
             )
-            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-            startActivity(intent)
+
         }
     }
 }
