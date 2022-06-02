@@ -49,9 +49,10 @@ class BookShelfFragment : Fragment() {
             adapter = mAdapter
         }
 
-        binding.imAddBook.setOnClickListener {
+       /* binding.imAddBook.setOnClickListener {
             startActivity(Intent(requireActivity(),UploadBook::class.java))
         }
+        */
 
         return binding.root
     }

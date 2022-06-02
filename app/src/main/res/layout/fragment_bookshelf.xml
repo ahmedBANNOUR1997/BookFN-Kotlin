@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
+    <!-- <ImageView
         android:id="@+id/imAddBook"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -29,6 +29,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
+        -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBookShelf"
