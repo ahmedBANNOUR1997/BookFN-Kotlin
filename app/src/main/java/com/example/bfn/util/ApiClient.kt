@@ -11,7 +11,7 @@ import java.io.File
 
 object ApiClient {
 
-    private const val BASE_URL: String = "http://10.0.2.2:3000/api/"
+    private const val BASE_URL: String = "https://bookfanatic.herokuapp.com/api/"
 
    // private const val BASE_URL: String = "http://192.168.1.105:3000/api/"
     private val gson =  GsonBuilder().setLenient().create()

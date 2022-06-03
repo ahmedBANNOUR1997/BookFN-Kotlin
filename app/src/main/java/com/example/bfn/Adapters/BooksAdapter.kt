@@ -34,7 +34,7 @@ class BooksAdapter : RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
         with(holder.binding) {
             tvAuthor.text = book.author
             tvTitle.text = book.title
-            Picasso.get().load(book.coverImage?.replace("localhost", "10.0.2.2")).into(imCover)
+            Picasso.get().load(book.coverImage?.replace("localhost:3000", "bookfanatic.herokuapp.com")).into(imCover)
             tvCategory.text = book.category
 
             imCover.setOnClickListener {

@@ -33,7 +33,7 @@ class BookShelfAdapter : RecyclerView.Adapter<BookShelfAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = books[position]
         with(holder.binding) {
-            Picasso.get().load(book.coverImage?.replace("localhost","10.0.2.2")).into(imReadBook)
+            Picasso.get().load(book.coverImage?.replace("localhost:3000","bookfanatic.herokuapp.com")).into(imReadBook)
             imReadBook.setOnClickListener {
                 bookListener?.let { callback ->
                     callback(book.id!!)

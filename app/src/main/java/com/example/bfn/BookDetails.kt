@@ -73,9 +73,9 @@ class BookDetails : AppCompatActivity() {
                         val bookid = response.body().response._id
                         PrefsManager.seBookid(this@BookDetails, bookid = bookid)
 
-                        Picasso.get().load(book.coverImage.replace("localhost", "10.0.2.2"))
+                        Picasso.get().load(book.coverImage.replace("localhost:3000", "bookfanatic.herokuapp.com"))
                             .into(binding.imBook)
-                        Picasso.get().load(book.coverImage.replace("localhost", "10.0.2.2"))
+                        Picasso.get().load(book.coverImage.replace("localhost:3000", "bookfanatic.herokuapp.com"))
                             .into(binding.imBlurBook)
                         binding.pages.text = book.nbPages.toString()
                         binding.lang.text = "Fr | Eng"
@@ -84,10 +84,10 @@ class BookDetails : AppCompatActivity() {
                         binding.tvAuthor.text = book.author.toString()
                         binding.btnRead.setOnClickListener {
                             addBookToRecentlyRead()
-                            BookPdfActivity.start(this@BookDetails,book.filePDF.replace("localhost","10.0.2.2"))
+                            BookPdfActivity.start(this@BookDetails,book.filePDF.replace("localhost:3000","bookfanatic.herokuapp.com"))
                         }
                         binding.btnPlay.setOnClickListener {
-                            TextToSpeech.start(this@BookDetails,book.filePDF.replace("localhost","10.0.2.2"))
+                            TextToSpeech.start(this@BookDetails,book.filePDF.replace("localhost:3000","bookfanatic.herokuapp.com"))
                         }
 
 
