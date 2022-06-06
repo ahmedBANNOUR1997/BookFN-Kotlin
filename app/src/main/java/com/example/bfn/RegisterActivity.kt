@@ -84,11 +84,11 @@ class RegisterActivity : AppCompatActivity() {
                         if (response.isSuccessful && response.body() != null) {
                             val content = response.body()
 
-                            if(response.code() == 201)
+                            if(response.code() == 200)
                             {
                                 Toast.makeText(
                                     this@RegisterActivity,
-                                    "Sign up completed! This is your Activation Code: ${response.message()}",
+                                    "Sign up completed!",
                                     Toast.LENGTH_LONG
                                 ).show()
                                 val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
