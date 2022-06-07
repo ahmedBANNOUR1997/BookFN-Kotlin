@@ -94,18 +94,17 @@ class RegisterActivity : AppCompatActivity() {
                                 val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                                 startActivity(intent)
                             }
-
-                            if(response.code() == 403)
-                            {
-                                Toast.makeText(
-                                    this@RegisterActivity,
-                                    "Error Occurred: ${response.message()}",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-
                         }
-                        else {
+
+                        else if(response.code() == 403)
+                        {
+                            val text = "Error Occurred: Email already associated within an existing account !"
+                            Toast.makeText(
+                                this@RegisterActivity,text,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                         else{
 
                             Toast.makeText(
                                 this@RegisterActivity,
