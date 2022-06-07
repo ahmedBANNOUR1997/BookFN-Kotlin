@@ -8,6 +8,7 @@ import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
@@ -17,7 +18,12 @@ object ApiClient {
     private val gson =  GsonBuilder().setLenient().create()
 
 
-    private val httpClient = OkHttpClient.Builder().build()
+    private val httpClient = OkHttpClient
+                            .Builder()
+                            .connectTimeout(1, TimeUnit.MINUTES)
+                            .readTimeout(30, TimeUnit.SECONDS)
+                            .writeTimeout(15, TimeUnit.SECONDS)
+                            .build()
 
     private val retrofit =
         Retrofit.Builder()
