@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BFN</string>
+    <string name="app_name">Book Fanatic</string>
     <string name="book_quote">Read your books\n wherever you are</string>
     <string name="login">Login</string>
     <string name="sign_in">Sign In</string>
