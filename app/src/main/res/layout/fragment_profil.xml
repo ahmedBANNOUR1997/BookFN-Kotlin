@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:fillViewport="false">
+    android:padding="20dp"
+    android:fillViewport="false"> -->
 
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profil.ProfilFragment"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="40dp"
     android:animateLayoutChanges="true"
     >
     <FrameLayout
@@ -212,11 +214,7 @@
         android:id="@+id/profile_messages_btn"
         />
         -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
-        >
+
 
         <Button
             android:id="@+id/deconnecter_btn"
@@ -238,9 +236,8 @@
             android:textSize="15sp"
 
             />
-    </RelativeLayout>
 
 
 </LinearLayout>
 
-</ScrollView>
+<!-- </ScrollView> -->
