@@ -193,8 +193,6 @@ class ProfilFragment : Fragment() {
 
                         val content = response.body()
 
-                        Toast.makeText(activity,content.get("message").asString, Toast.LENGTH_LONG).show()
-
                         if(response.code() == 200)
                         {
                             full_screen_picture_iv.setImageBitmap(profilePic)
