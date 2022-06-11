@@ -7,6 +7,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Bitmap.CompressFormat
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
@@ -24,28 +25,22 @@ import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.bfn.R
 import com.example.bfn.LoginActivity
 import com.example.bfn.ProfileActivity
+import com.example.bfn.R
 import com.example.bfn.ResetPassActivity
-import com.example.bfn.models.GetUserResponse
-import com.example.bfn.models.UserX
-import com.example.bfn.prefs.PrefsManager
 import com.example.bfn.util.ApiClient
-import com.example.bfn.util.ApiClient.apiService
-import com.example.bfn.util.ApiService
 import com.example.bfn.util.UserSession
-import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.squareup.picasso.Picasso
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.*
+
 
 class ProfilFragment : Fragment() {
 
@@ -202,9 +197,6 @@ class ProfilFragment : Fragment() {
 
                         }
 
-
-
-
                     }
                     else {
                         val content = response.body()
@@ -238,11 +230,14 @@ class ProfilFragment : Fragment() {
         return File.createTempFile(fileName, ".jpeg", directoryStorage)
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
         if(requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK){
             val takenPhoto = BitmapFactory.decodeFile(filePhoto.absolutePath)
+            val file = File(activity?.cacheDir, "$FILE_NAME.jpeg")
+            val os: OutputStream = BufferedOutputStream(FileOutputStream(file))
+            takenPhoto.compress(CompressFormat.JPEG, 100, os)
+            os.close()
             photoPath = filePhoto.toUri()
-
+            picture.setImageBitmap(takenPhoto)
             uploadProfilePicture(takenPhoto)
 
 
@@ -258,12 +253,11 @@ class ProfilFragment : Fragment() {
             val file = File(activity?.cacheDir, "$FILE_NAME.jpeg")
 
             val os: OutputStream = BufferedOutputStream(FileOutputStream(file))
-            imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, os)
+            imageBmp.compress(CompressFormat.JPEG, 100, os)
             os.close()
             photoPath = file.toUri()
 
             uploadProfilePicture(imageBmp)
-
 
         }
         else {
@@ -273,6 +267,8 @@ class ProfilFragment : Fragment() {
 
 
     }
+
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -297,3 +293,4 @@ class ProfilFragment : Fragment() {
 
     }
 }
+
